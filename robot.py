@@ -51,4 +51,4 @@ class TankDriveRobot(wpilib.IterativeRobot):
         wpilib.LiveWindow.run()
 
 if __name__ == "__main__":
-    wpilib.run(TankDriveRobot)
+    wpilib.run(TankDriveRobot, physics_enabled=True)

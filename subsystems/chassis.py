@@ -1,6 +1,6 @@
 
 from wpilib.command import Subsystem
-from wpilib import CANTalon
+from wpilib import CANTalon, TalonSRX
 
 from robot_map import RobotMap
 from commands.tank_drive import TankDrive
@@ -9,8 +9,8 @@ class Chassis(Subsystem):
 
     def __init__(self):
 
-        #self._motors = [CANTalon(RobotMap.motor_a_talon_id), CANTalon(RobotMap.motor_b_talon_id), CANTalon(RobotMap.motor_c_talon_id), CANTalon(RobotMap.motor_d_talon_id)]
-        self._motors = []
+        self._motors = [TalonSRX(RobotMap.motor_a_talon_id), TalonSRX(RobotMap.motor_b_talon_id), TalonSRX(RobotMap.motor_c_talon_id), TalonSRX(RobotMap.motor_d_talon_id)]#[CANTalon(RobotMap.motor_a_talon_id), CANTalon(RobotMap.motor_b_talon_id), CANTalon(RobotMap.motor_c_talon_id), CANTalon(RobotMap.motor_d_talon_id)]
+        #self._motors = []
         #for motor in self._motors:
         #    motor.changeControlMode(RobotMap.drive_motor_mode)
 
@@ -41,5 +41,5 @@ class Chassis(Subsystem):
             value /= max_val
             value *= throttle
             #print("vX: ", vX, " Value: ", value)
-            #motor.set(value)
+            motor.set(value)
             #print("Set point: ", motor.setPoint)

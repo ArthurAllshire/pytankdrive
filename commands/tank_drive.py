@@ -7,16 +7,17 @@ class TankDrive(Command):
         #Use self.requires() here to declare subsystem dependencies
         #eg. self.requires(chassis)
         super().__init__(name, timeout)
-        self.requires(robot.chassis)
         self.robot = robot
+        #self.robot.chassis = robot.chassis
+        self.requires(self.robot.chassis)
 
     def initialize(self):
         """Called just before this Command runs the first time"""
-        robot.drive(0.0, 0.0, 0.0, 0.0) # just to be safe
+        self.robot.chassis.drive(0.0, 0.0, 0.0, 0.0) # just to be safe
 
     def execute(self):
         """Called repeatedly when this Command is scheduled to run"""
-        robot.chassis.drive(robot.oi.getLeftStickX(), 0.0, robot.oi.getLeftStickY(), 1.0)
+        self.robot.chassis.drive(self.robot.oi.getJoystickY(), 0.0, self.robot.oi.getJoystickZ(), 1.0)
 
     def isFinished(self):
         """This should return true when this command no longer needs to run execute()"""
@@ -24,7 +25,7 @@ class TankDrive(Command):
 
     def end(self):
         """Called once after isFinished returns true"""
-        robot.chassis.drive(0.0, 0.0, 0.0, 0.0)
+        self.robot.chassis.drive(0.0, 0.0, 0.0, 0.0)
 
     def interrupted(self):
         """Called when another command which requires one or more of the same example_subsystem is scheduled to run"""

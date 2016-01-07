@@ -7,19 +7,26 @@ from commands.tank_drive import TankDrive
 
 class Chassis(Subsystem):
 
-    def __init__(self):
+    def __init__(self, robot):
 
-        #self._motors = [CANTalon(RobotMap.motor_a_talon_id), CANTalon(RobotMap.motor_b_talon_id), CANTalon(RobotMap.motor_c_talon_id), CANTalon(RobotMap.motor_d_talon_id)]
-        self._motors = []
-        #for motor in self._motors:
-        #    motor.changeControlMode(RobotMap.drive_motor_mode)
+        super().__init__()
+
+        self.robot = robot
+
+        self._motors = [CANTalon(RobotMap.motor_a_talon_id),
+                CANTalon(RobotMap.motor_b_talon_id),
+                CANTalon(RobotMap.motor_c_talon_id),
+                CANTalon(RobotMap.motor_d_talon_id)]
+        #self._motors = []
+        for motor in self._motors:
+            motor.changeControlMode(RobotMap.drive_motor_mode)
 
     #Put methods for controlling this subsystem here.
     # Call these from Commands.
     pass
 
     def initDefaultCommand(self):
-        setDefaultCommand(TankDrive())
+        self.setDefaultCommand(TankDrive(self.robot))
 
     def drive(self, vX, vY, vZ, throttle):
 
@@ -41,5 +48,5 @@ class Chassis(Subsystem):
             value /= max_val
             value *= throttle
             #print("vX: ", vX, " Value: ", value)
-            #motor.set(value)
+            motor.set(value)
             #print("Set point: ", motor.setPoint)

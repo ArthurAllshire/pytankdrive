@@ -17,7 +17,9 @@ class RobotMap:
     motor_c_talon_id = 1
     motor_d_talon_id = 3
 
-    gamepad_port = 0
+    gamepad_port = 1
+    joystick_port = 0
+
     gamepad_left_stick_x = 0
     gamepad_left_stick_y = 1
     gamepad_left_stick_x = 4

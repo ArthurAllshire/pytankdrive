@@ -17,6 +17,11 @@ class RobotMap:
     motor_c_talon_id = 1
     motor_d_talon_id = 3
 
+    motor_a_pwm_id= 1
+    motor_b_pwm_id= 2
+    motor_c_pwm_id= 3
+    motor_d_pwm_id= 4
+
     gamepad_port = 1
     joystick_port = 0
 
@@ -26,6 +31,8 @@ class RobotMap:
     gamepad_left_stick_y = 5
 
     drive_motor_mode = CANTalon.ControlMode.PercentVbus
+
+    motor_controllers = "victor" # "talonsrx" or "victor"
 
     deadzone = 0.05
     pass

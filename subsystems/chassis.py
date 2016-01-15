@@ -1,6 +1,7 @@
 
 from wpilib.command import Subsystem
 from wpilib import CANTalon
+from wpilib import Victor
 
 from robot_map import RobotMap
 from commands.tank_drive import TankDrive
@@ -13,17 +14,18 @@ class Chassis(Subsystem):
 
         self.robot = robot
 
-        self._motors = [CANTalon(RobotMap.motor_a_talon_id),
-                CANTalon(RobotMap.motor_b_talon_id),
-                CANTalon(RobotMap.motor_c_talon_id),
-                CANTalon(RobotMap.motor_d_talon_id)]
-        #self._motors = []
-        for motor in self._motors:
-            motor.changeControlMode(RobotMap.drive_motor_mode)
-
-    #Put methods for controlling this subsystem here.
-    # Call these from Commands.
-    pass
+        if RobotMap.motor_controllers == "talonsrx":
+            self._motors = [CANTalon(RobotMap.motor_a_talon_id),
+                    CANTalon(RobotMap.motor_b_talon_id),
+                    CANTalon(RobotMap.motor_c_talon_id),
+                    CANTalon(RobotMap.motor_d_talon_id)]
+            for motor in self._motors:
+                motor.changeControlMode(RobotMap.drive_motor_mode)
+        elif RobotMap.motor_controllers == "victor":
+            self._motors = [Victor(RobotMap.motor_a_pwm_id),
+                    Victor(RobotMap.motor_b_pwm_id),
+                    Victor(RobotMap.motor_c_pwm_id),
+                    Victor(RobotMap.motor_d_pwm_id)]
 
     def initDefaultCommand(self):
         self.setDefaultCommand(TankDrive(self.robot))

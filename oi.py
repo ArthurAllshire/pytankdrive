@@ -2,6 +2,8 @@ import wpilib
 from wpilib import buttons
 
 from robot_map import RobotMap
+
+from commands import toggle_intake
 """
 ROBOT AXIS we use these axis mappings, which are different from the wpilib ones
       + X
@@ -39,7 +41,7 @@ class OI:
         #You create one by telling it which joystick it's on and which button
         #number it is.
         #stick = wpilib.Joystick(port)
-        #button = buttons.JoystickButton(stick, button_number)
+        self.toggle_intake_button = buttons.JoystickButton(self.joystick, 2)
 
         #There are a few additional built-in buttons you can use. Additionally, by
         #subclassing Button you can create custom example_trigger and bind those to
@@ -51,7 +53,7 @@ class OI:
 
         #Start the command when the button is pressed and let it run the command
         #until it is finished as determined by it's isFinished method.
-        #button.whenPressed(ExampleCommand())
+        self.toggle_intake_button.whenPressed(toggle_intake.ToggleIntake(self.robot))
 
         #Run the command while the button is being held down and interrupt it
         #once the button is released

@@ -5,6 +5,7 @@ from wpilib import command
 
 #from subsystems.example_subsystem import ExampleSubsystem
 from subsystems import Chassis
+from subsystems import Intake
 #from commands.example_command import ExampleCommand
 from oi import OI
 
@@ -19,8 +20,9 @@ class TankDriveRobot(wpilib.IterativeRobot):
         This function is called upon program startup and
         should be used for any initialization code.
         """
-        self.oi = OI(self)
         self.chassis = Chassis(self)
+        self.intake = Intake(self)
+        self.oi = OI(self)
         self.logger = logging.getLogger("robotpy")
         #Create the command used for the autonomous period
         #self.autonomous_command = ExampleCommand(self)

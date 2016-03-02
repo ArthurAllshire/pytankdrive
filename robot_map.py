@@ -18,11 +18,11 @@ class RobotMap:
     motor_d_talon_id = 3
     motor_intake_talon_id = 5
 
-    motor_a_pwm_id= 1
-    motor_b_pwm_id= 2
-    motor_c_pwm_id= 3
-    motor_d_pwm_id= 4
-    motor_intake_pwm_id = 5
+    motor_a_pwm_id= 0
+    motor_b_pwm_id= 1
+    motor_c_pwm_id= 2
+    motor_d_pwm_id= 3
+    motor_intake_pwm_id = 4
 
     gamepad_port = 1
     joystick_port = 0

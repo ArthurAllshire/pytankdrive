@@ -17,7 +17,12 @@ class TankDrive(Command):
 
     def execute(self):
         """Called repeatedly when this Command is scheduled to run"""
-        self.robot.chassis.drive(self.robot.oi.getJoystickY(), 0.0, self.robot.oi.getJoystickZ(), 1.0)
+        self.robot.chassis.drive(
+                self.robot.rescale_js(-self.robot.oi.getJoystickY(), deadzone=0.05),
+                0.0,
+                self.robot.rescale_js(self.robot.oi.getJoystickZ(), deadzone=0.2, exponential=0.3),
+                1.0
+                )
 
     def isFinished(self):
         """This should return true when this command no longer needs to run execute()"""
